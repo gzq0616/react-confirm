@@ -32,8 +32,8 @@ export default class App extends React.Component{
 ### OPTIONS
 >Options, their defaults, possibilities and explainations.
 
-| Name | Type | Default | Description |
-| --- |
+|Name|Type|Default|Description|
+|------|------|------|------|
 | title | String | `'Hello'` | Title of the dialog. |
 |content|String,Function|`'Are you sure to continue?'`|Content for the dialog.Or use a function that returns Ajax promise.|
 |contentLoaded|function|`function(){}`|(optionally available) If you load content via URL prefix using 'url:http://abc.com/xyz', contentLoaded will be the callback.|
