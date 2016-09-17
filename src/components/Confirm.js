@@ -219,9 +219,13 @@ class Title extends React.Component {
 
 //Rclear
 class Rclear extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
     render() {
         return (
-            <div className="r-clear"/>
+            <div className="r-clear" />
         )
     }
 }
