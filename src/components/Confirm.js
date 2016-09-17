@@ -44,7 +44,7 @@ class Confirm extends React.Component{
             rconfirm_class:["rconfirm", "rconfirm-"+this.props.theme],
             rconfirm_style:{},
 
-            rconfirmbg_class:["rconfirm-bg"],
+            rconfirmbg_class:["rconfirm-bg","seen"],
             rconfirmbg_style:{},
 
             rbox_class:["rconfirm-box"],
@@ -58,9 +58,9 @@ class Confirm extends React.Component{
     };
 
     _unmount(){
-        const container = this.props.container;
-        ReactDOM.unmountComponentAtNode(container);
-        container.remove();
+        const element = this.props.element;
+        ReactDOM.unmountComponentAtNode(element);
+        element.remove();
     };
 
     _cancel(){
@@ -159,12 +159,11 @@ class Confirm extends React.Component{
                             <div ref="rconfirmboxcontainer" className={"rconfirm-box-container "+ this.props.columnClass}>
                                 <div ref="rbox" className={cn(this.state.rbox_class)} style={this.state.rbox_style} onClick={this.boxHandle.bind(this)}>
 
-                                    <div ref="closeIcon" className="closeIcon" style={{display:this.props.closeIconClass?'block':'none'}}>{this.props.closeIconClass?<i className={this.props.closeIconClass} />:'&times;'}</div>
-
-                                    <div ref="icon" className="title-c">
-                                        <span className="icon-c"><i className={this.props.icon} /></span>
-                                        <span ref="title" className="title">{this.props.title}</span>
+                                    <div ref="closeIcon" className="closeIcon" style={{display:this.props.closeIconClass?'block':'none'}} onClick={this._cancel.bind(this)}>
+                                        {this.props.closeIconClass?<i className={this.props.closeIconClass} />:'&times;'}
                                     </div>
+
+                                    <Title {...this.props}/>
 
                                     <div ref="contentPane" className="content-pane" style={this.state.contentPane_style}>
                                         <div ref="content" className="content" style={this.state.content_style}><input type="text" className="form-control"/></div>
@@ -175,7 +174,7 @@ class Confirm extends React.Component{
                                         <button type="button" className={"btn "+this.props.cancelButtonClass} onClick={this._cancel.bind(this)}>{this.props.cancelButton}</button>
                                     </div>
 
-                                    <div ref="rclear" className="r-clear" />
+                                    <Rclear />
                                 </div>
                             </div>
                         </div>
@@ -187,10 +186,37 @@ class Confirm extends React.Component{
 };
 
 
-export default function confirm(options={}){
-    const container = document.createElement('div');
-	document.body.appendChild(container);
+//title
+class Title extends React.Component{
+    constructor(props){
+        super(props)
+    }
+    render(){
+        return (
+            <div className="title-c">
+                <span className="icon-c">
+                    <i className={this.props.icon} />
+                </span>
+                <span className="title">{this.props.title}</span>
+            </div>
+        )
+    }
+}
 
-    const props = Object.assign({container},options);
-	ReactDOM.render(<Confirm {...props}/>,container)
+
+//Rclear
+class Rclear extends React.Component{
+    render(){
+        return (
+            <div className="r-clear" />
+        )
+    }
+}
+
+export default function confirm(options={}){
+    const element = document.createElement('div');
+	document.body.appendChild(element);
+
+    const props = Object.assign({element},options);
+	ReactDOM.render(<Confirm {...props}/>,element)
 }
