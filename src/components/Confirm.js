@@ -154,27 +154,24 @@ class Confirm extends React.Component {
     render() {
         return (
             <div ref="rconfirm" className={cn(this.state.rconfirm_class)} style={this.state.rconfirm_style}>
-                <div ref="rconfirmbg" className={cn(this.state.rconfirmbg_class)} style={this.state.rconfirmbg_style}/>
+                <div ref="rconfirmbg" className={cn(this.state.rconfirmbg_class)} style={this.state.rconfirmbg_style}></div>
 
                 <div className="rconfirm-scrollpane" onClick={this.scrollHandle.bind(this)}>
-                    <div ref="container" className="container">
-                        <div ref="row" className="row">
-                            <div ref="rconfirmboxcontainer"
-                                 className={"rconfirm-box-container "+ this.props.columnClass}>
+                    <div className="container">
+                        <div className="row">
+                            <div ref="rconfirmboxcontainer" className={"rconfirm-box-container "+ this.props.columnClass}>
                                 <div ref="rbox" className={cn(this.state.rbox_class)} style={this.state.rbox_style}
                                      onClick={this.boxHandle.bind(this)}>
 
                                     <div ref="closeIcon" className="closeIcon"
-                                         style={{display:this.props.closeIconClass?'block':'none'}}
+                                         style={{display:this.props.closeIcon?'block':'none'}}
                                          onClick={this._cancel.bind(this)}>
-                                        {this.props.closeIconClass ?
-                                            <i className={this.props.closeIconClass}/> : '&times;'}
+                                        {this.props.closeIconClass ? <i className={this.props.closeIconClass}/> : '×'}
                                     </div>
 
                                     <Title {...this.props}/>
 
-                                    <div ref="contentPane" className="content-pane"
-                                         style={this.state.contentPane_style}>
+                                    <div ref="contentPane" className="content-pane" style={this.state.contentPane_style}>
                                         <div ref="content" className="content" style={this.state.content_style}><input
                                             type="text" className="form-control"/></div>
                                     </div>
@@ -225,7 +222,7 @@ class Rclear extends React.Component {
 
     render() {
         return (
-            <div className="r-clear" />
+            <div className="r-clear"></div>
         )
     }
 }
